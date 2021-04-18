@@ -129,9 +129,11 @@ type MachineConfig struct {
 	// HistoricalSamples is the number of samples to include in the
 	// historical average. If zero, DefaultHistoricalSamples is used.
 	HistoricalSamples uint
+
 	// RecentSamples is the number of samples to include in the recent
 	// average. If zero, DefaultRecentSamples is used.
 	RecentSamples uint
+
 	// AbsThreshold specifies the absolute value threshold for closing
 	// connections. If the recent average is greater than AbsThreshold,
 	// the Machine will transition to the Closing state.
@@ -149,6 +151,7 @@ type MachineConfig struct {
 	// positive, but does not affect it if AbsThreshold is zero or
 	// negative.
 	AbsThreshold float64
+
 	// PctThreshold specifies the percentage threshold for closing
 	// connections. If the recent average is at least PctThreshold %
 	// greater than the historical average, the Machine will transition
@@ -169,6 +172,7 @@ type MachineConfig struct {
 	// in the average. This prevents outliers from skewing the averages,
 	// as this can cause legitimate anomalies to be missed.
 	PctThreshold float64
+
 	// ClosingStreak specifies the number of consecutive HTTP connections
 	// that must be closed in order to transition out of the Closing
 	// state.
@@ -180,6 +184,7 @@ type MachineConfig struct {
 	// transition out of the Closing state if the total closed
 	// connection count (ClosingCount) is reached first.
 	ClosingStreak uint
+
 	// ClosingCount specifies the number of total (not necessarily
 	// consecutive) HTTP connections that must be closed in order to
 	// transition out of the Closing state.
@@ -191,6 +196,7 @@ type MachineConfig struct {
 	// closed connection count reaches ClosingCount if the closed
 	// connection streak (ClosingStreak) is reached first.
 	ClosingCount uint
+
 	// RestingCount specifies the number of data points for which the
 	// machine should "rest" in the Resting state after transitioning
 	// out of the Closing state, and before transitioning back to either
