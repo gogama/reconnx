@@ -14,11 +14,13 @@ const (
 	// historical samples if the HistoricalSamples field of a
 	// MachineConfig is zero.
 	DefaultHistoricalSamples = 10
+
 	// DefaultRecentSamples is the default value used for number of
 	// recent samples if the RecentSamples field of a MachineConfig is
 	// zero.
 	DefaultRecentSamples = 3
-	badWindowSizeMsg     = "reconnx: window size must be positive"
+
+	badWindowSizeMsg = "reconnx: window size must be positive"
 )
 
 // A State represents the current state of a Machine.
@@ -29,10 +31,12 @@ const (
 	// new data, evaluating whether it should transition to the Closing
 	// state.
 	Watching State = iota
-	// The Closing state indicates that a Machine is closing connections
-	// while evaluating if it should transition to the Resting or
-	// Watching states.
+
+	// The Closing state indicates that a Machine is actively
+	// connections, and may transition to the Resting or Watching
+	// states.
 	Closing
+
 	// The Resting state indicates that a Machine is in a resting period
 	// where it passively accumulates new data but does not change
 	// states. Once the resting period is over, the machine will
@@ -64,6 +68,7 @@ func (s State) String() string {
 type Machine interface {
 	// State reports the current state of the state machine.
 	State() State
+
 	// Next receives a new data point into the state machine and returns
 	// the next and previous states.
 	//
@@ -73,8 +78,8 @@ type Machine interface {
 	// flag indicates whether the HTTP connection that generated the
 	// value was closed.
 	//
-	// If the new data point did not a state transition, the next state
-	// is equal to the previous state.
+	// If the new data point did cause not a state transition, the next
+	// state is equal to the previous state.
 	Next(value float64, closed bool) (next State, prev State)
 }
 

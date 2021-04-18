@@ -16,6 +16,7 @@ type Config struct {
 	// Logger is the logger where the plugin reports errors and
 	// interesting events. If nil, the NopLogger is used.
 	Logger Logger
+
 	// Latency specifies when to close connections to a host due to
 	// latency experienced in sending requests to that host.
 	//

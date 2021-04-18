@@ -14,7 +14,7 @@ Amazon Route53 or Azure Traffic Manager, to keep their DNS pointing at healthy
 hosts. But the default GoLang HTTP client pools HTTP connections, so old
 connections to bad hosts stay alive. The reconnx plugin closes these old
 connections when they start to perform badly, allowing your service to shift
-over to healthy hosts.
+re-query DNS and shift over to healthy hosts.
 
 ---
 
@@ -39,10 +39,7 @@ import (
 )
 
 func main() {
-	// Create an httpx client with default retry and timeout policies.
 	client := &httpx.Client{}
-
-	// Install reconnx plugin on the client.
 	reconnx.OnClient(client, reconnx.Config{
 		Latency: reconnx.MachineConfig{
 			// If the average time taken by "recent" requests to a particular
