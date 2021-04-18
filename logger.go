@@ -21,5 +21,5 @@ type Logger interface {
 // updates about plugin operation.
 type NopLogger struct{}
 
-func (_ NopLogger) Printf(string, ...interface{}) {
+func (NopLogger) Printf(string, ...interface{}) {
 }

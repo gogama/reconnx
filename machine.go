@@ -27,22 +27,19 @@ const (
 type State int
 
 const (
-	// The Watching state indicates that a Machine is actively watching
-	// new data, evaluating whether it should transition to the Closing
-	// state.
+	// Watching indicates that a Machine is actively watching new data,
+	// evaluating whether it should transition to the Closing state.
 	Watching State = iota
 
-	// The Closing state indicates that a Machine is actively
-	// connections, and may transition to the Resting or Watching
-	// states.
+	// Closing indicates that a Machine is actively closing connections,
+	// and may transition to the Resting or Watching states.
 	Closing
 
-	// The Resting state indicates that a Machine is in a resting period
-	// where it passively accumulates new data but does not change
-	// states. Once the resting period is over, the machine will
-	// transition either to the Watching state, if the data are good, or
-	// the Closing state, if the data indicate connections should be
-	// closed.
+	// Resting indicates that a Machine is in a resting period where it
+	// passively accumulates new data but does not change states. Once
+	// the resting period is over, the machine will transition either to
+	// the Watching state, if the data are good, or the Closing state,
+	// if the data indicate connections should be closed.
 	Resting
 )
 
