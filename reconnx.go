@@ -11,8 +11,20 @@ const (
 	nilHandlerGroupMsg = "reconnx: nil handler group"
 )
 
+// Config describes how to configure the reconnx plugin.
 type Config struct {
-	Logger  Logger
+	// Logger is the logger where the plugin reports errors and
+	// interesting events. If nil, the NopLogger is used.
+	Logger Logger
+	// Latency specifies when to close connections to a host due to
+	// latency experienced in sending requests to that host.
+	//
+	// The unit Latency is milliseconds, so the AbsThreshold field must
+	// be specified in milliseconds.
+	//
+	// Note that the zero value will result in connections never being
+	// closed. At a minimum, the AbsThreshold, ClosingStreak, and
+	// ClosingCount members should be set to positive values.
 	Latency MachineConfig
 }
 

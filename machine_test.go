@@ -88,38 +88,38 @@ func TestAvgWindow(t *testing.T) {
 
 func TestMachine(t *testing.T) {
 	t.Run("New", func(t *testing.T) {
-		t.Run("DefaultHistoryLen", func(t *testing.T) {
+		t.Run("DefaultHistoricalSamples", func(t *testing.T) {
 			m := NewMachine(MachineConfig{
-				RecentLen: 123,
+				RecentSamples: 123,
 			})
 
 			require.NotNil(t, m)
 			require.IsType(t, &machine{}, m)
 			m2 := m.(*machine)
-			assert.Len(t, m2.history.values, DefaultHistoryLen)
+			assert.Len(t, m2.historical.values, DefaultHistoricalSamples)
 			assert.Len(t, m2.recent.values, 123)
 		})
-		t.Run("DefaultRecentLen", func(t *testing.T) {
+		t.Run("DefaultRecentSamples", func(t *testing.T) {
 			m := NewMachine(MachineConfig{
-				HistoryLen: 456,
+				HistoricalSamples: 456,
 			})
 
 			require.NotNil(t, m)
 			require.IsType(t, &machine{}, m)
 			m2 := m.(*machine)
-			assert.Len(t, m2.history.values, 456)
-			assert.Len(t, m2.recent.values, DefaultRecentLen)
+			assert.Len(t, m2.historical.values, 456)
+			assert.Len(t, m2.recent.values, DefaultRecentSamples)
 		})
 		t.Run("ExplicitLens", func(t *testing.T) {
 			m := NewMachine(MachineConfig{
-				HistoryLen: 11,
-				RecentLen:  22,
+				HistoricalSamples: 11,
+				RecentSamples:     22,
 			})
 
 			require.NotNil(t, m)
 			require.IsType(t, &machine{}, m)
 			m2 := m.(*machine)
-			assert.Len(t, m2.history.values, 11)
+			assert.Len(t, m2.historical.values, 11)
 			assert.Len(t, m2.recent.values, 22)
 		})
 	})
@@ -137,11 +137,11 @@ func TestMachine(t *testing.T) {
 			{
 				name: "SkipResting",
 				config: MachineConfig{
-					HistoryLen:    1,
-					RecentLen:     1,
-					AbsoluteMax:   1.0,
-					ClosingMax:    1,
-					ClosingStreak: 1,
+					HistoricalSamples: 1,
+					RecentSamples:     1,
+					AbsThreshold:      1.0,
+					ClosingCount:      1,
+					ClosingStreak:     1,
 				},
 				steps: []testStep{
 					{2.0, false, Closing},
@@ -151,11 +151,11 @@ func TestMachine(t *testing.T) {
 			{
 				name: "SkipClosingZeroMax",
 				config: MachineConfig{
-					HistoryLen:    1,
-					RecentLen:     1,
-					AbsoluteMax:   1.0,
-					ClosingStreak: 1,
-					RestingMax:    1,
+					HistoricalSamples: 1,
+					RecentSamples:     1,
+					AbsThreshold:      1.0,
+					ClosingStreak:     1,
+					RestingCount:      1,
 				},
 				steps: []testStep{
 					{1.0, true, Resting},
@@ -165,12 +165,12 @@ func TestMachine(t *testing.T) {
 			{
 				name: "SkipClosingZeroStreak",
 				config: MachineConfig{
-					HistoryLen:  1,
-					RecentLen:   1,
-					AbsoluteMax: 3.0,
-					PercentMax:  1.0,
-					ClosingMax:  1,
-					RestingMax:  1,
+					HistoricalSamples: 1,
+					RecentSamples:     1,
+					AbsThreshold:      3.0,
+					PctThreshold:      1.0,
+					ClosingCount:      1,
+					RestingCount:      1,
 				},
 				steps: []testStep{
 					{1.0, true, Watching},
@@ -182,12 +182,12 @@ func TestMachine(t *testing.T) {
 			{
 				name: "Absolute",
 				config: MachineConfig{
-					HistoryLen:    1,
-					RecentLen:     2,
-					AbsoluteMax:   10.0,
-					ClosingStreak: 2,
-					ClosingMax:    3,
-					RestingMax:    2,
+					HistoricalSamples: 1,
+					RecentSamples:     2,
+					AbsThreshold:      10.0,
+					ClosingStreak:     2,
+					ClosingCount:      3,
+					RestingCount:      2,
 				},
 				steps: []testStep{
 					{10.0, false, Closing},
@@ -211,12 +211,12 @@ func TestMachine(t *testing.T) {
 			{
 				name: "Percent",
 				config: MachineConfig{
-					HistoryLen:    1,
-					RecentLen:     1,
-					PercentMax:    1.0,
-					ClosingStreak: 1,
-					ClosingMax:    1,
-					RestingMax:    2,
+					HistoricalSamples: 1,
+					RecentSamples:     1,
+					PctThreshold:      100.0,
+					ClosingStreak:     1,
+					ClosingCount:      1,
+					RestingCount:      2,
 				},
 				steps: []testStep{
 					{1.0, false, Closing},
@@ -235,13 +235,13 @@ func TestMachine(t *testing.T) {
 			{
 				name: "BothAbsoluteAndPercent",
 				config: MachineConfig{
-					HistoryLen:    5,
-					RecentLen:     1,
-					AbsoluteMax:   10.0,
-					PercentMax:    1.0,
-					ClosingStreak: 2,
-					ClosingMax:    3,
-					RestingMax:    1,
+					HistoricalSamples: 5,
+					RecentSamples:     1,
+					AbsThreshold:      10.0,
+					PctThreshold:      100.0,
+					ClosingStreak:     2,
+					ClosingCount:      3,
+					RestingCount:      1,
 				},
 				steps: []testStep{
 					{5.0, false, Watching},
