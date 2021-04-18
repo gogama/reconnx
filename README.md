@@ -4,7 +4,7 @@ reconnx - Reconnect pooled HTTP connections when they get slow (httpx plugin)
 [![Build Status](https://travis-ci.com/gogama/reconnx.svg)](https://travis-ci.com/gogama/reconnx) [![Go Report Card](https://goreportcard.com/badge/github.com/gogama/reconnx)](https://goreportcard.com/report/github.com/gogama/reconnx) [![PkgGoDev](https://pkg.go.dev/badge/github.com/gogama/reconnx)](https://pkg.go.dev/github.com/gogama/reconnx)
 
 Package reconnx is a Go-language plugin for the
-[httpx](httpx://github.com/gogama/httpx) robust HTTP framework. The reconnx
+[httpx](https://github.com/gogama/httpx) robust HTTP framework. The reconnx
 plugin closes pooled HTTP connections when they experience degraded performance,
 resulting in fresh replacement connections which may have substantially better
 performance.
@@ -13,8 +13,8 @@ performance.
 Amazon Route53 or Azure Traffic Manager, to keep their DNS pointing at healthy
 hosts. But the default GoLang HTTP client pools HTTP connections, so old
 connections to bad hosts stay alive. The reconnx plugin closes these old
-connections when they start to perform badly, allowing your service to shift
-re-query DNS and shift over to healthy hosts.
+connections when they start to perform badly, allowing your service to re-query
+DNS and shift over to healthy hosts.
 
 ---
 
