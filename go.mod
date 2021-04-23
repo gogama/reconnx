@@ -1,6 +1,6 @@
 module github.com/gogama/reconnx
 
-go 1.13
+go 1.14
 
 require (
 	github.com/gogama/httpx v1.1.1
