@@ -30,7 +30,7 @@ func TestHandler_Handler(t *testing.T) {
 		}
 
 		for _, evt := range unsupported {
-			t.Run(evt.Name(), func(t *testing.T) {
+			t.Run(evt.String(), func(t *testing.T) {
 				h := &handler{}
 				assert.PanicsWithValue(t, unsupportedEventMsg, func() {
 					h.Handle(evt, &request.Execution{})

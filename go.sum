@@ -2,6 +2,8 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gogama/httpx v1.1.1 h1:mdZ7poVQFlkxoPqpqqP8pe8ZUiRiaC7Z0XMK0xSRs40=
 github.com/gogama/httpx v1.1.1/go.mod h1:8njIJat5uGUa4EATedxhKKuWW55Tsty68ZcnMQjtF8U=
+github.com/gogama/httpx v1.1.2 h1:1JXhI0xaMI8fcaWjT7kJUSL1h3lnzw/oVyY5c3RRx3g=
+github.com/gogama/httpx v1.1.2/go.mod h1:CgWItcRZYp/CsmB21UpI3VuqL8Pim4Rp4oYMHyA5TJk=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0 h1:4G4v2dO3VZwixGIRoQ5Lfboy6nUhCyYzaqnIAPPhYs4=
