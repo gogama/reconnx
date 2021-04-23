@@ -10,14 +10,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/mock"
-
-	"github.com/stretchr/testify/require"
-
+	"github.com/gogama/httpx"
 	"github.com/gogama/httpx/request"
 	"github.com/stretchr/testify/assert"
-
-	"github.com/gogama/httpx"
+	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/require"
 )
 
 func TestHandler_Handler(t *testing.T) {
