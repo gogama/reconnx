@@ -1,7 +1,7 @@
 reconnx - Reconnect pooled HTTP connections when they get slow (httpx plugin)
 =============================================================================
 
-[![Build Status](https://travis-ci.com/gogama/reconnx.svg)](https://travis-ci.com/gogama/reconnx) [![Go Report Card](https://goreportcard.com/badge/github.com/gogama/reconnx)](https://goreportcard.com/report/github.com/gogama/reconnx) [![PkgGoDev](https://pkg.go.dev/badge/github.com/gogama/reconnx)](https://pkg.go.dev/github.com/gogama/reconnx)
+[![Build Status](https://travis-ci.org/gogama/reconnx.svg)](https://travis-ci.com/gogama/reconnx) [![Go Report Card](https://goreportcard.com/badge/github.com/gogama/reconnx)](https://goreportcard.com/report/github.com/gogama/reconnx) [![PkgGoDev](https://pkg.go.dev/badge/github.com/gogama/reconnx)](https://pkg.go.dev/github.com/gogama/reconnx)
 
 Package reconnx is a Go-language plugin for the
 [httpx](https://github.com/gogama/httpx) robust HTTP framework. The reconnx
