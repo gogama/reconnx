@@ -107,7 +107,7 @@ func afterAttempt(h *handler, e *request.Execution) {
 		h.Logger.Printf("reconnx: ERROR: missing latency state machine for host (%s)", host)
 		return
 	}
-	prev, next := sm.Next(float64(d.Milliseconds()), e.Request.Close)
+	next, prev := sm.Next(float64(d.Milliseconds()), e.Request.Close)
 	if prev != next {
 		h.Logger.Printf("reconnx: after attempt %d, host %s state changed from %s to %s", e.Attempt, host, prev, next)
 	}

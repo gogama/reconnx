@@ -282,7 +282,7 @@ func testAfterAttempt(t *testing.T) {
 
 					l.AssertExpectations(t)
 					m.AssertExpectations(t)
-					assert.Equal(t, "reconnx: after attempt 0, host wham! state changed from Closing to Resting", infoMsg)
+					assert.Equal(t, "reconnx: after attempt 0, host wham! state changed from Resting to Closing", infoMsg)
 				})
 			}
 		})
